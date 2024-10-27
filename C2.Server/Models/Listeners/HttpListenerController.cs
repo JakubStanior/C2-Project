@@ -29,8 +29,9 @@ public class HttpListenerController : ControllerBase
             _agentService.AddAgent(agent);
         }
 
-        // var tasks = agent.GetPendingTasks();
-        return Ok("Listener received request!");
+        IEnumerable<AgentTask> tasks = agent.GetPendingTasks();
+
+        return Ok(tasks);
     }
 
     private AgentMetadata? ExtractMetadata(IHeaderDictionary headers)
