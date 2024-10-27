@@ -29,6 +29,8 @@ public class HttpListenerController : ControllerBase
             _agentService.AddAgent(agent);
         }
 
+        agent.CheckIn();
+
         IEnumerable<AgentTask> tasks = agent.GetPendingTasks();
 
         return Ok(tasks);
@@ -42,7 +44,7 @@ public class HttpListenerController : ControllerBase
         }
 
         // Authorization: Bearer <base64>
-        encodedMetadata = encodedMetadata.ToString().Substring(0, 7);
+        encodedMetadata = encodedMetadata.ToString().Remove(0, 7);
 
         String jsonMetadata = Encoding.UTF8.GetString(Convert.FromBase64String(encodedMetadata));
 

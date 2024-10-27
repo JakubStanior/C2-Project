@@ -1,4 +1,4 @@
-namespace C2.Server.Models.Agents
+namespace C2.Agent.Models
 {
     public class AgentMetadata
     {
